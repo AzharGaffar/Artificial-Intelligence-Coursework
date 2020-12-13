@@ -61,11 +61,7 @@ def k_fold_version(number_of_folds):
         accuracy += (accuracy_score(y_test, predictions))
         loops = loops + 1
 
-        # Printing a Confusion Matrix and changing the x ticks and y ticks to String Variables
-        x_axis_labels = ["Blue Loss", "Blue Win"]
-        confmatrix = confusion_matrix(y_test, predictions)
-        sns.heatmap(confmatrix, annot=True, cmap="Blues", fmt='d', xticklabels=x_axis_labels, yticklabels=x_axis_labels)
-
+       
     # Calculating the accuracy
     accuracy = accuracy / loops
 
