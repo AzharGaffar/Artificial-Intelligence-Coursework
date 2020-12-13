@@ -16,3 +16,4 @@ categorise whether a game of League of Legends is a Win or Loss for the Blue Tea
 | Task| Description | Done by|
 | ----------- | ----------- | ----------- |
 | Analysis of Dataset | We have analysed the Dataset in order to look for null values, consider correlation and look at other factors that we may need to take into account.| **Everyone**|
+| Logistic Regression | Implementation of Logistic Regression with improvements.| **Abubakr**|
