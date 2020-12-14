@@ -61,7 +61,6 @@ def k_fold_version(number_of_folds):
         accuracy += (accuracy_score(y_test, predictions))
         loops = loops + 1
 
-       
     # Calculating the accuracy
     accuracy = accuracy / loops
 
@@ -86,7 +85,7 @@ def best_test_model():
     final_logistic_regression_model.fit(X_train, y_train)
 
     # Making a prediction
-    predictions = final_logistic_regression_model.best_estimator_.predict(X)
+    predictions = final_logistic_regression_model.best_estimator_.predict(X_test)
 
     print("best solver is:", final_logistic_regression_model.best_params_)
 
