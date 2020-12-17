@@ -116,12 +116,13 @@ X = df.drop(columns = 'blueWins')
 # Setting the target variable
 y = df['blueWins']
 
-# Standard Scaler is being used so that variance will be reduced and the data points can be classified easily
-scaler = StandardScaler().fit(X)
-X = scaler.transform(X)
-
 # Splitting the data
 X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.3)
+
+# Standard Scaler is being used so that variance will be reduced and the data points can be classified easily
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.fit_transform(X_test)
 
 # Baseline model that we started with and started experimenting off
 baseline_model()
