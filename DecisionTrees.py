@@ -121,12 +121,13 @@ X = df.drop(columns = 'blueWins')
 # Setting the target variable
 y = df['blueWins']
 
-# REMEMBER TO COMMENT THIS OUT TO DO SEPARATE TESTS
-# scaler = StandardScaler().fit(X)
-# X = scaler.transform(X)
-
 # Splitting the data
 X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.3)
+
+# REMEMBER TO COMMENT THIS OUT TO DO SEPARATE TESTS
+# scaler = StandardScaler()
+# X_train = scaler.fit_transform(X_train)
+# X_test = scaler.fit_transform(X_test)
 
 # Baseline Model. remember to comment out standard scaler
 baseline_model()
