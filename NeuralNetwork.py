@@ -13,19 +13,20 @@ from sklearn.metrics import confusion_matrix
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.layers import Dropout
 #-----------------------------------------------------------------------------------------------------#
-# Beginning
+# Baseline Model
 def baseline_model():
     sq_model = Sequential()
-    sq_model.add(Dense(200, activation='relu'))
-    sq_model.add(Dense(100, activation='relu'))
-    sq_model.add(Dense(50, activation='relu'))
-    sq_model.add(Dense(25, activation='relu'))
-    sq_model.add(Dense(12, activation='relu'))
-    sq_model.add(Dense(5, activation='relu'))
-    sq_model.add(Dense(1, activation='sigmoid'))
+    sq_model.add(Dense(200, activation='relu')) # Hidden layer with activation function Relu
+    sq_model.add(Dense(100, activation='relu')) # Hidden layer with activation function Relu
+    sq_model.add(Dense(50, activation='relu')) # Hidden layer with activation function Relu
+    sq_model.add(Dense(25, activation='relu')) # Hidden layer with activation function Relu
+    sq_model.add(Dense(12, activation='relu')) # Hidden layer with activation function Relu
+    sq_model.add(Dense(5, activation='relu')) # Hidden layer with activation function Relu
+    sq_model.add(Dense(1, activation='sigmoid')) # Hidden layer with activation function Sigmoid
+    # Compile with Adam Optimizer
     sq_model.compile(loss='binary_crossentropy', optimizer='Adam', metrics='accuracy')
 
-    # Fitting the baseline model
+    # Fitting the baseline model with just 400 epochs
     sq_model.fit(x=X_train, y=y_train, epochs=400)
 
     # Saving the Predictions in a prediction variable. (The terminal said the old way was deprecated)
@@ -38,17 +39,18 @@ def baseline_model():
 # This is the intermediate of our reapproach
 def intermediate_model():
     sq_model = Sequential()
-    sq_model.add(Dense(16, activation='relu'))
-    sq_model.add(Dense(8, activation='relu'))
-    sq_model.add(Dense(4, activation='relu'))
-    sq_model.add(Dense(2, activation='relu'))
-    sq_model.add(Dense(1, activation='sigmoid'))
+    sq_model.add(Dense(16, activation='relu')) # Hidden layer with activation function Relu
+    sq_model.add(Dense(8, activation='relu')) # Hidden layer with activation function Relu
+    sq_model.add(Dense(4, activation='relu')) # Hidden layer with activation function Relu
+    sq_model.add(Dense(2, activation='relu')) # Hidden layer with activation function Relu
+    sq_model.add(Dense(1, activation='sigmoid')) # Hidden layer with activation function Sigmoid
+    # Compile with Adam Optimizer
     sq_model.compile(loss='binary_crossentropy', optimizer='Adam', metrics='accuracy')
 
     # Declaring an early stop when accuracy is at its max
     es = EarlyStopping(monitor='accuracy', mode='max', patience=25)
 
-    # Fitting the intermediate level with an early stop
+    # Fitting the intermediate level model with an early stop
     sq_model.fit(x=X_train, y=y_train, epochs=400, callbacks=[es])
 
     # Saving the Predictions in a prediction variable. (The terminal said the old way was deprecated)
@@ -61,21 +63,21 @@ def intermediate_model():
 # This is the final model for our multilayer perceptron. Implementation of dropouts and changing the optimizer
 def final_model():
     sq_model = Sequential()
-    sq_model.add(Dense(16, activation='relu'))
-    # sq_model.add(Dropout(0.2))
-    sq_model.add(Dense(8, activation='relu'))
-    sq_model.add(Dropout(0.4))
-    sq_model.add(Dense(4, activation='relu'))
-    sq_model.add(Dropout(0.4))
-    # sq_model.add(Dense(2, activation='relu'))
-    sq_model.add(Dense(1, activation='sigmoid'))
-    #Optimizer changed
+    sq_model.add(Dense(16, activation='relu')) # Hidden layer with activation function Relu
+    # sq_model.add(Dropout(0.2)) Commented out because its not needed anymore
+    sq_model.add(Dense(8, activation='relu')) # Hidden layer with activation function Relu
+    sq_model.add(Dropout(0.4)) # Dropout layer
+    sq_model.add(Dense(4, activation='relu')) # Hidden Layer with activation function Relu
+    sq_model.add(Dropout(0.4)) # Dropout Layer
+    # sq_model.add(Dense(2, activation='relu')) Commented out because its not needed anymore
+    sq_model.add(Dense(1, activation='sigmoid')) # Final Layer with activation function sigmoid
+    #Optimizer changed to SGD
     sq_model.compile(loss='binary_crossentropy', optimizer='SGD', metrics='accuracy')
 
-    # Again, early stop on the epochs
+    # Declaring an early stop that monitors when accuracy is at its max
     es = EarlyStopping(monitor='accuracy', mode='max', patience=25)
 
-    # Fit it
+    # Fit the model with 400 epochs and use the early stop
     sq_model.fit(x=X_train, y=y_train, epochs=400, callbacks=[es])
 
     # PLot the loss and the accuracy to show how the model generalizes well
@@ -121,12 +123,15 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
 # Standard Scaler is being used to reduce variance and make processing times quicker
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
-X_test = scaler.fit_transform(X_test)
+X_test = scaler.transform(X_test)
 
+# Please uncomment if you want to run this
 # baseline_model()
 
+# Please uncomment if you want to run this
 # intermediate_model()
 
+#This is the final model
 final_model()
 
 # Baseline overfitting and not very efficient
