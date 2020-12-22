@@ -122,17 +122,19 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.3)
 # Standard Scaler is being used so that variance will be reduced and the data points can be classified easily
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
-X_test = scaler.fit_transform(X_test)
+X_test = scaler.transform(X_test)
 
-# Baseline model that we started with and started experimenting off
-baseline_model()
+# Baseline model that we started with and started experimenting off. Please Uncomment this if you want to run it
+# baseline_model()
 
 # This is the best model that uses grid search with other hyperparameters
 best_knn_model()
 
+# Uncomment this to see the plot from 1 to 200 of K_values. Warning takes a long time
 # Plotting the K values for the report and to analyse them
 # plot_k_values(1,200)
 
+# PLEASE NOTE THESE SCORES WERE ACCURATE AT THE TIME OF TESTING BUT PLEASE REFER TO THE MAIN REPORT IF YOU WANT OUR FINAL ACCURACY SCORES
 # Baseline model, No Standard Scaling: Accuracy 50.708502024291505 %
 # Baseline model, w/ Standard Scaling: Accuracy 65.65452091767881 %
 # Improving Baseline Model:
