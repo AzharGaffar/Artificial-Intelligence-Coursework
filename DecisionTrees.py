@@ -37,7 +37,7 @@ def line_graph_for_hyperparameter(x,y):
 
     # Dropping low values and amending the graph_plot dataframe
     graph_plot = graph_plot[graph_plot.Accuracy==max(graph_plot.Accuracy)]
-    print("Your best accuracy was was:", graph_plot['Accuracy'].values[0], "this was when i was", graph_plot['Number'].values[0])
+    print("Your best accuracy in the line graph was :", graph_plot['Accuracy'].values[0], "this was when i was", graph_plot['Number'].values[0])
 #-----------------------------------------------------------------------------------------------------#
 # Baseline Model
 def baseline_model():
@@ -74,6 +74,7 @@ def best_model():
     # Initialize the Decision Tree
     decision_tree_model = DecisionTreeClassifier(min_samples_split=0.1)
 
+    # GridSearch for max_depth (with a specific range in mind), max_features and min_samples_leaf
     grid = {"max_depth":[3,4,5,6],"max_features": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],"min_samples_leaf": [0.1,0.2,0.3,0.4,0.5,1]}
     final_decision_tree_model = GridSearchCV(decision_tree_model, grid)
 
@@ -85,7 +86,7 @@ def best_model():
 
     # Printing the accuracy
     accuracy = final_decision_tree_model.best_score_
-    print("Your Final final accuracy rating is for Decision Trees is:", accuracy * 100, "%")
+    print("Your final accuracy rating is for Decision Trees is:", accuracy * 100, "%")
 
     # Calculating how much the model has missed the targets
     misclassification_rate = 1 - accuracy
@@ -127,7 +128,7 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.3)
 # REMEMBER TO COMMENT THIS OUT TO DO SEPARATE TESTS
 # scaler = StandardScaler()
 # X_train = scaler.fit_transform(X_train)
-# X_test = scaler.fit_transform(X_test)
+# X_test = scaler.transform(X_test)
 
 # Baseline Model. remember to comment out standard scaler
 baseline_model()
@@ -138,6 +139,7 @@ best_model()
 # Line Graph Generator. Currently Set to Max Depth
 line_graph_for_hyperparameter(1,30)
 
+# PLEASE NOTE THESE SCORES WERE ACCURATE AT THE TIME OF TESTING BUT PLEASE REFER TO THE MAIN REPORT IF YOU WANT OUR FINAL ACCURACY SCORES
 # Baseline accuracy without Standard Scaler Accuracy is: 62.79%
 # Baseline accuracy with Standard Scaler: 62.6% - DO NOT use Standard Scaler
 # Adjusting hyper parameter and using criterion "entropy" reduces accuracy from 63.29% (gini) to 62.07% (entropy)
@@ -145,6 +147,6 @@ line_graph_for_hyperparameter(1,30)
 # Setting "class_weight to balanced made no difference to accuracy.
 # Decided to use GridSearchCV in order to determine the number of max_features and min_samples_leaf as it is too unpredictable
 # Min_samples_split 0.1 best accuracy after that gets lower. 71.89%
-# Max_Depth tends to be of around 5 with highest accuracy of 70.78% but can sometimes change so use Grid Search on this as well
+# Max_Depth tends to be of around 4 with highest accuracy of 70.78% but can sometimes change so use Grid Search on this as well
 
-# FINAL Model should consist of NO standard scaler, gini, best splitter, grid search with max_features and min_samples_leaf and max_depth, no CV as that causes accuracy to go down. 0.1 for min_min_samples_split and a max_depth of 5
+# FINAL Model should consist of NO standard scaler, gini, best splitter, grid search with max_features and min_samples_leaf and max_depth, no CV as that causes accuracy to go down. 0.1 for min_min_samples_split
