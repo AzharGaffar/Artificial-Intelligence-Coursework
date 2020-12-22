@@ -144,6 +144,7 @@ k_fold_version(5)
 # Calling best test with 5 fold and finding the correct solver
 best_test_model()
 # -----------------------------------------------------------------------------------------------------#
+# PLEASE NOTE THESE SCORES WERE ACCURATE AT THE TIME OF TESTING BUT PLEASE REFER TO THE MAIN REPORT IF YOU WANT OUR FINAL ACCURACY SCORES
 # Baseline accuracy without any iterations and WITHOUT STANDARD SCALER: 48.04%
 # Accuracy without any iterations and WITH STANDARD SCALER: 72.06%
 # Accuracy of 5 Fold Cross Validation resulted in: 72.84%
