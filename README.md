@@ -22,4 +22,6 @@ categorise whether a game of League of Legends is a Win or Loss for the Blue Tea
 | Neural Network | Implementation of a Multilayer Perception Model with improvements. | **Everyone** |
 
 ### Note for Marker:
-Please ignore the accuracy notes at the bottom of each Python File as they were just for our use. We were using them to track our workflow for each model in preparation for the report. You will find the final accuracy scores in the report- they have been standardised with each model by using the same "Random State" split as a control.
+* The accuracy notes at the bottom of each model was used to track our workflow for each model in preparation for the report. You will find the final accuracy scores in the report- they have been standardised with each model by using the same "Random State" split as a control.
+* In KNN model, line 128 and 135 have been commented out as they take a long time to run. I would recommend uncommenting them if you would like to see our baseline model and a plot of the n_neighbors tested. This would be the full output we show in the report.
+* In the Neural Network model, line 129 and 132 have been commented out as they take a long time to run. I would recommend uncommenting them if you would like to see our baseline model and intermediate model.
